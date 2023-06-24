@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const admin = require("./routes/adminRouter");
+const parent = require("./routes/parentRouter");
 
 const mongoString = process.env.DATABASE_URL;
 const PORT = process.env.PORT;
@@ -19,10 +20,12 @@ database.once("connected", () => {
 });
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
 app.use("/", admin);
+app.use("/data", parent);
 
 app.listen(PORT, () => {
   console.log(`Server Started on ${PORT}`);
