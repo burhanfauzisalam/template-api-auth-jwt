@@ -50,9 +50,11 @@ router.post("/admin-login", async (req, res) => {
   const token = jwt.sign({ _id: cekUser._id }, process.env.SECRET, {
     expiresIn: "1h",
   });
-  res.header("admin-token", token).json({
+  res.header("token", token).json({
     token: token,
+    data : cekUser,
   });
+  // res.json(cekUser);
 });
 
 //Get all Method
@@ -71,7 +73,7 @@ router.get("/admin/:id", verifyToken, async (req, res) => {
     const data = await Model.findById(req.params.id);
     res.json(data);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(400).json({ message: "Jangan merubah data" });
   }
 });
 
