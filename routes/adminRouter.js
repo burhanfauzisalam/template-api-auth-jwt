@@ -67,6 +67,15 @@ router.get("/admin", verifyToken, async (req, res) => {
   }
 });
 
+//Cek token
+router.get("/cekToken", verifyToken, async (req, res) => {
+  try {
+    res.status(200).json({message: 'token valid'});
+  } catch (error) {
+    res.status(400).json({ message: 'Silahkan login' });
+  }
+});
+
 //Get by ID Method
 router.get("/admin/:id", verifyToken, async (req, res) => {
   try {

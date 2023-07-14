@@ -12,7 +12,7 @@ const dataAdmin = new mongoose.Schema({
   password: {
     required: true,
     type: String,
-    // select: false,
+    select: false,
   },
   email: {
     required: true,
